@@ -1,2 +1,2 @@
-# LifeDoc-
+# LifeDocumention
 sistema de diario para documentar
