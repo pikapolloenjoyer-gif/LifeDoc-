@@ -1,0 +1,14 @@
+{
+  "elpepe": {
+    "password": "elpepe123",
+    "nombre": "pepe",
+    "apellido": "pepep",
+    "saldo": 10000.0
+  },
+  "Carlos": {
+    "password": "123",
+    "nombre": "Carlosj",
+    "apellido": "Abreu",
+    "saldo": 20000.0
+  }
+}
