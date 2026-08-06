@@ -15,6 +15,8 @@ else:
  with open("To do list.json", "r") as f:
     to_do_list = json.load(f)
 
+
+
 dias = [
    "Lu",
    "Ma",
@@ -43,7 +45,7 @@ leer = input("¿Leíste? (Sí/No): ")
 # if volver.lower() == "sí":
 #    dias_atras = input("¿A que día quieres volver atras?")
 
-to_do_list[ayer.strftime("%d", dias[ayer.weekday()])] = {
+to_do_list[ayer.strftime(dias[ayer.weekday()])] = {
    "highlight": highlight,
    "madrugar": madrugar,
    "limpieza": limpieza,
@@ -52,6 +54,8 @@ to_do_list[ayer.strftime("%d", dias[ayer.weekday()])] = {
    "jugar": jugar,
    "leer": leer
 }
+
+
 
 tabla.add_column("Highlight", justify="center")
 tabla.add_column("Madrugar", justify="center")
@@ -64,20 +68,20 @@ tabla.add_column("Leer", justify="center")
 os.system("cls") 
 for key, value in to_do_list.items():
     
- tabla.add_row(f"{key}", value["highlight"], value["madrugar"], value["limpieza"], value["coding"], value["pushups"], value["jugar"], value["leer"])
+ tabla.add_row(f"{key,ayer.strftime("%d")}", value["highlight"], value["madrugar"], value["limpieza"], value["coding"], value["pushups"], value["jugar"], value["leer"])
    
 console = Console()
 console.print(tabla)
 
 while True:
-  opcion = input("\n1. Actualizar  \n2.Eliminar \n3.Salir \nIngresa una opción: ")
+  opcion = input("\n1.Actualizar  \n2.Eliminar \n3.Salir \nIngresa una opción: ")
 
-  if opcion == 1:
+  if opcion == "1":
     if not to_do_list:
       print("No hay días registrados")
       continue
 
-    to_do_list[ayer.strftime("%d", dias[ayer.weekday()])] = input("Ingresa el dia")
+    to_do_list[ayer.strftime("%d", dias[ayer.weekday()])] = input("Ingresa el dia: ")
     if not dias in to_do_list.keys:
       print("Ingresa un día valido")
       continue
@@ -104,8 +108,11 @@ while True:
       continue
     print("Se actualizaron los datos correctamente")
     continue
-  elif opcion == 3:
+  elif opcion == "3":
+    print("Saliendo...")
     break
+  else:
+    print("Ingresa una opción válida")
   
     
       
