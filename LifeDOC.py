@@ -15,8 +15,11 @@ else:
  with open("To do list.json", "r") as f:
     to_do_list = json.load(f)
 
+hoy = datetime.now()
+ayer = hoy.replace(day=hoy.day - 1)
+dias_numerados = ayer.strftime("%d")
 
-
+  #Dias numerados(como poner?)
 dias = [
    "Lu",
    "Ma",
@@ -27,8 +30,7 @@ dias = [
    "Do"
 ]
 
-hoy = datetime.now()
-ayer = hoy.replace(day=hoy.day - 1)
+
 
 tabla = Table("Dias", style="black", title= hoy.strftime("%B %Y"))
 
@@ -44,8 +46,9 @@ leer = input("¿Leíste? (Sí/No): ")
 
 # if volver.lower() == "sí":
 #    dias_atras = input("¿A que día quieres volver atras?")
-
-to_do_list[ayer.strftime(dias[ayer.weekday()])] = {
+            #Dias numerados(como poner?)
+to_do_list[ayer.strftime("%A, %d")] = {
+   "diasnumerados": dias_numerados,
    "highlight": highlight,
    "madrugar": madrugar,
    "limpieza": limpieza,
@@ -56,7 +59,7 @@ to_do_list[ayer.strftime(dias[ayer.weekday()])] = {
 }
 
 
-
+tabla.add_column("Dia numerado", justify="center")
 tabla.add_column("Highlight", justify="center")
 tabla.add_column("Madrugar", justify="center")
 tabla.add_column("Limpieza", justify="center")
@@ -67,8 +70,8 @@ tabla.add_column("Leer", justify="center")
 
 os.system("cls") 
 for key, value in to_do_list.items():
-    
- tabla.add_row(f"{key,ayer.strftime("%d")}", value["highlight"], value["madrugar"], value["limpieza"], value["coding"], value["pushups"], value["jugar"], value["leer"])
+                  #Dias numerados(como poner?)
+ tabla.add_row(f"{key}", value['diasnumerados'], value['highlight'], value['madrugar'], value['limpieza'], value['coding'], value['pushups'], value['jugar'], value['leer'])
    
 console = Console()
 console.print(tabla)
@@ -81,7 +84,7 @@ while True:
       print("No hay días registrados")
       continue
 
-    to_do_list[ayer.strftime("%d", dias[ayer.weekday()])] = input("Ingresa el dia: ")
+    to_do_list[ayer.strftime(dias[ayer.weekday()])] = input("Ingresa el dia: ")
     if not dias in to_do_list.keys:
       print("Ingresa un día valido")
       continue
