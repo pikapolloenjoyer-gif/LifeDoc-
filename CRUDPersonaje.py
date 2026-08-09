@@ -25,7 +25,7 @@ if __name__ == "__main__":
    
         #os.system("clear") #En mac
 
-        opcion = input("\n1: Crear \n2: Leer \n3: Actualizar \n4: Eliminar \n5: Salir \nIngrese una opcion:")
+        opcion = input("\n1: Crear \n2: Leer \n3: Actualizar \n4: Eliminar \n5: Salir \nIngresar opción:")
        
         
         if opcion == "1":
