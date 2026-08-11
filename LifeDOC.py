@@ -16,6 +16,7 @@ else:
 
 hoy = datetime.now()
 ayer = hoy.replace(day=hoy.day - 1)
+hoy_mes_año = hoy.strftime("%B %Y")
 
 
   
@@ -29,19 +30,11 @@ ayer = hoy.replace(day=hoy.day - 1)
 #    "Do"
 # ]
 
-
-
-
-
-
 # volver = input("Quieres volver días atras? (Sí/No): ")
 
 # if volver.lower() == "sí":
 #    dias_atras = input("¿A que día quieres volver atras?")
             #Dias numerados(como poner?).Fixed
-
-
-
 
 
 console = Console()
@@ -50,6 +43,7 @@ while True:
   opcion = input("\n1.Agregar  \n2.Leer \n3.Actualizar \n4.Eliminar \n5.Salir \nIngresa una opción: ")
  
   if opcion == "1":
+    dias = ayer.strftime("%A, %d")
 
     highlight = input("Highlight del día: ")
     madrugar = input("¿Madrugaste? (Sí/No): ")
@@ -59,7 +53,7 @@ while True:
     jugar = input("¿Jugaste? (Sí/No): ")
     leer = input("¿Leíste? (Sí/No): ")
 
-    to_do_list[ayer.strftime("%A, %d")] = {
+    to_do_list[dias] = {
       "highlight": highlight,
       "madrugar": madrugar,
       "limpieza": limpieza,
@@ -76,7 +70,7 @@ while True:
   elif opcion == "2":
     os.system("cls")
 
-    tabla = Table("Dias", style="black", title= hoy.strftime("%B %Y"))
+    tabla = Table("Dias", style="black", title= hoy_mes_año)
 
     tabla.add_column("Highlight", justify="center")
     tabla.add_column("Madrugar", justify="center")
@@ -90,14 +84,17 @@ while True:
                       #Dias numerados(como poner?).Fixed
          tabla.add_row(f"{key}", value['highlight'], value['madrugar'], value['limpieza'], value['coding'], value['pushups'], value['jugar'], value['leer'])
     console.print(tabla)
+    input("presiona cualquier tecla para continuar")
   
   elif opcion == "3":
+    
+
     if not to_do_list:
       print("No hay días registrados")
       continue
-
-    to_do_list[ayer.strftime("%A, %d")] = input("Ingresa el día: ")
-    if not ayer.strftime("%A, %d") in to_do_list.keys():
+     
+    to_do_list[dias] = input("Ingresa el día: ")
+    if not dias in to_do_list.keys():
       print("Ingresa un día valido")
       continue
     highlight = input("Highlight del día: ")
@@ -108,7 +105,7 @@ while True:
     jugar = input("¿Jugaste? (Sí/No): ")
     leer = input("¿Leíste? (Sí/No): ")
 
-    to_do_list[ayer.strftime("%A, %d")] = {
+    to_do_list[dias] = {
       "highlight": highlight,
       "madrugar": madrugar,
       "limpieza": limpieza,
@@ -122,7 +119,18 @@ while True:
       print("No se agregaron los datos correctamente")
       continue
     print("Se actualizaron los datos correctamente")
-    continue
+    
+  elif opcion == "4":
+    if not to_do_list:
+      print("No hay días en la lista")
+      continue
+
+    to_do_list[dias] = input("Ingresa el día: ")
+    if not dias in to_do_list.keys():
+      print("Ingresa un día válido")
+
+    del to_do_list[dias]
+    print ("Día eliminado correctamente")
   elif opcion == "5":
     print("Saliendo...")
     break
